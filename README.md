@@ -1,53 +1,55 @@
-# Task Tracker
+# Трекер задач
 
-A small task manager built with React, TypeScript and Vite. Tasks can be added with a priority, marked as done, filtered and deleted. The list is saved in `localStorage`, so it survives page reloads.
+Небольшое приложение для управления задачами на React, TypeScript и Vite. Задачи можно создавать с приоритетом, отмечать выполненными, фильтровать и удалять. Список сохраняется в `localStorage`, поэтому не теряется при перезагрузке страницы.
 
-## Features
+> **Демо:** _добавьте ссылку на развёрнутое приложение после деплоя_
 
-- Add tasks with a title and priority (low, medium, high)
-- Mark tasks as done and filter by All, Active or Done
-- Delete tasks
-- Persistence in `localStorage`, with safe fallback for corrupted data
-- Keyboard-accessible controls with labels and `aria-pressed` filter buttons
-- Responsive layout
+## Возможности
 
-## Tech stack
+- Создание задач с названием и приоритетом (низкий, средний, высокий)
+- Отметка задач как выполненных и фильтрация: Все, Активные, Выполненные
+- Удаление задач
+- Сохранение в `localStorage` с защитой от повреждённых данных
+- Управление с клавиатуры: поля и кнопки подписаны, фильтры передают состояние через `aria-pressed`
+- Адаптивная вёрстка
 
-- React 18 with function components and hooks
-- TypeScript in strict mode
-- Vite for development and builds
-- Vitest and Testing Library for unit and component tests
-- GitHub Actions for CI (build and tests on every push and pull request)
+## Стек технологий
 
-## Getting started
+- React 18: функциональные компоненты и хуки
+- TypeScript в строгом режиме
+- Vite для разработки и сборки
+- Vitest и Testing Library для unit- и компонентных тестов
+- GitHub Actions для CI: сборка и тесты на каждый push и pull request в `main`
 
-Requirements: Node.js 20 or newer.
+## Быстрый старт
+
+Требования: Node.js 20 или новее.
 
 ```bash
 npm install
-npm run dev      # start the dev server
-npm run build    # type-check and produce a production build
-npm test         # run the test suite
+npm run dev      # запуск сервера разработки
+npm run build    # проверка типов и production-сборка
+npm test         # запуск тестов
 ```
 
-## Project structure
+## Структура проекта
 
 ```
 src/
-  components/     Presentational components (TaskForm, TaskList, FilterBar)
-  tasks.ts        Pure functions for adding, toggling, removing and filtering tasks
-  storage.ts      localStorage read and write with validation
-  App.tsx         Application state and composition
-  tasks.test.ts   Unit tests for the pure task logic
-  App.test.tsx    Integration tests for user flows
+  components/     Презентационные компоненты (TaskForm, TaskList, FilterBar)
+  tasks.ts        Чистые функции: добавление, переключение, удаление и фильтрация задач
+  storage.ts      Чтение и запись в localStorage с валидацией данных
+  App.tsx         Состояние приложения и композиция компонентов
+  tasks.test.ts   Unit-тесты логики задач
+  App.test.tsx    Интеграционные тесты пользовательских сценариев
 ```
 
-## Design decisions
+## Ключевые решения
 
-- **Pure task logic.** All state transitions live in `tasks.ts` and return new arrays. This keeps them easy to test without rendering anything.
-- **Validated persistence.** `loadTasks` checks every stored item against the expected shape and drops invalid entries, so a corrupted value cannot crash the app.
-- **Accessibility first.** Inputs have associated labels, icon-like actions have descriptive `aria-label` values, and the filter group uses `aria-pressed` so screen readers announce the active filter.
+- **Чистая логика задач.** Все изменения состояния находятся в `tasks.ts` и возвращают новые массивы, не меняя исходные. Это упрощает тестирование без рендера компонентов.
+- **Валидация при чтении.** `loadTasks` проверяет каждый сохранённый элемент на соответствие ожидаемой структуре и отбрасывает некорректные записи, поэтому повреждённые данные не приводят к падению приложения.
+- **Доступность.** У полей есть связанные подписи, у кнопок действий есть понятные `aria-label`, а группа фильтров использует `aria-pressed`, чтобы экранный диктор сообщал активный фильтр.
 
-## License
+## Лицензия
 
-MIT
+[MIT](LICENSE)
