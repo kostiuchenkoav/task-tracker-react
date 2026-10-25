@@ -13,24 +13,24 @@ describe('App', () => {
     const user = userEvent.setup();
     render(<App />);
 
-    await user.type(screen.getByLabelText('Task title'), 'Write tests');
-    await user.click(screen.getByRole('button', { name: 'Add' }));
+    await user.type(screen.getByLabelText('Название задачи'), 'Write tests');
+    await user.click(screen.getByRole('button', { name: 'Добавить' }));
 
     expect(screen.getByText('Write tests')).toBeInTheDocument();
-    expect(screen.getByText('1 task(s) left')).toBeInTheDocument();
+    expect(screen.getByText('Осталось задач: 1')).toBeInTheDocument();
   });
 
   it('marks a task as done and filters the list', async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    await user.type(screen.getByLabelText('Task title'), 'First');
-    await user.click(screen.getByRole('button', { name: 'Add' }));
-    await user.type(screen.getByLabelText('Task title'), 'Second');
-    await user.click(screen.getByRole('button', { name: 'Add' }));
+    await user.type(screen.getByLabelText('Название задачи'), 'First');
+    await user.click(screen.getByRole('button', { name: 'Добавить' }));
+    await user.type(screen.getByLabelText('Название задачи'), 'Second');
+    await user.click(screen.getByRole('button', { name: 'Добавить' }));
 
     await user.click(screen.getByRole('checkbox', { name: /First/ }));
-    await user.click(screen.getByRole('button', { name: 'Active' }));
+    await user.click(screen.getByRole('button', { name: 'Активные' }));
 
     const list = screen.getByRole('list');
     expect(within(list).getByText('Second')).toBeInTheDocument();

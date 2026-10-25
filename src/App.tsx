@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <main className="app">
-      <h1>Task Tracker</h1>
+      <h1>Трекер задач</h1>
       <TaskForm onAdd={(title: string, priority: Priority) => setTasks((prev) => addTask(prev, title, priority))} />
       <FilterBar filter={filter} onChange={setFilter} />
       <TaskList
@@ -26,7 +26,7 @@ export default function App() {
         onToggle={(id) => setTasks((prev) => toggleTask(prev, id))}
         onRemove={(id) => setTasks((prev) => removeTask(prev, id))}
       />
-      <footer className="summary">{countActive(tasks)} task(s) left</footer>
+      <footer className="summary">Осталось задач: {countActive(tasks)}</footer>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { PRIORITY_LABELS } from '../labels';
 import type { Priority } from '../types';
 
 interface TaskFormProps {
@@ -22,28 +23,28 @@ export function TaskForm({ onAdd }: TaskFormProps) {
   return (
     <form className="task-form" onSubmit={handleSubmit}>
       <label className="visually-hidden" htmlFor="task-title">
-        Task title
+        Название задачи
       </label>
       <input
         id="task-title"
         type="text"
-        placeholder="What needs to be done?"
+        placeholder="Что нужно сделать?"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
       <label className="visually-hidden" htmlFor="task-priority">
-        Priority
+        Приоритет
       </label>
       <select
         id="task-priority"
         value={priority}
         onChange={(event) => setPriority(event.target.value as Priority)}
       >
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
+        <option value="low">{PRIORITY_LABELS.low}</option>
+        <option value="medium">{PRIORITY_LABELS.medium}</option>
+        <option value="high">{PRIORITY_LABELS.high}</option>
       </select>
-      <button type="submit">Add</button>
+      <button type="submit">Добавить</button>
     </form>
   );
 }

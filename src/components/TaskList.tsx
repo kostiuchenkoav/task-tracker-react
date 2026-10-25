@@ -1,3 +1,4 @@
+import { PRIORITY_LABELS } from '../labels';
 import type { Task } from '../types';
 
 interface TaskListProps {
@@ -8,7 +9,7 @@ interface TaskListProps {
 
 export function TaskList({ tasks, onToggle, onRemove }: TaskListProps) {
   if (tasks.length === 0) {
-    return <p className="empty">No tasks here yet.</p>;
+    return <p className="empty">Задач пока нет.</p>;
   }
 
   return (
@@ -19,14 +20,14 @@ export function TaskList({ tasks, onToggle, onRemove }: TaskListProps) {
             <input type="checkbox" checked={task.done} onChange={() => onToggle(task.id)} />
             <span className="task-title">{task.title}</span>
           </label>
-          <span className={`priority priority-${task.priority}`}>{task.priority}</span>
+          <span className={`priority priority-${task.priority}`}>{PRIORITY_LABELS[task.priority]}</span>
           <button
             type="button"
             className="remove"
-            aria-label={`Delete ${task.title}`}
+            aria-label={`Удалить задачу «${task.title}»`}
             onClick={() => onRemove(task.id)}
           >
-            Delete
+            Удалить
           </button>
         </li>
       ))}

@@ -6,14 +6,14 @@ interface FilterBarProps {
 }
 
 const FILTERS: { value: Filter; label: string }[] = [
-  { value: 'all', label: 'All' },
-  { value: 'active', label: 'Active' },
-  { value: 'done', label: 'Done' },
+  { value: 'all', label: 'Все' },
+  { value: 'active', label: 'Активные' },
+  { value: 'done', label: 'Выполненные' },
 ];
 
 export function FilterBar({ filter, onChange }: FilterBarProps) {
   return (
-    <div className="filter-bar" role="group" aria-label="Filter tasks">
+    <div className="filter-bar" role="group" aria-label="Фильтр задач">
       {FILTERS.map(({ value, label }) => (
         <button
           key={value}
